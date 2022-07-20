@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Cinzel:wght@800&display=swap');
+
+header {
+    /*display: flex;
+    margin: 1vh;
+    border: 1px solid grey;
+    border-radius: 10px;
+    min-height: 10vh;
+*/
+    margin: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 7pt;
+    background: #fff;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+header img {
+    max-height: 10vh;
+}
+
+header p{
+    margin-top: auto !important;
+    /* font-family: 'Cinzel', serif; */
+    font-family: 'Acme', sans-serif;
+    font-size:1.7em ;
+}

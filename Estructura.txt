@@ -1,0 +1,18 @@
+App 
+    - Header
+    - Pagina
+        * Buscador
+            Input
+            Boton
+        * Resultados
+            - Listado
+                - Noticia
+            - Paginado
+            - Loading
+    - Footer
+
+======================
+ Librerias utilizadas
+======================
+- React Bootstrap (npm install react-bootstrap bootstrap)
+- React Router (npm install react-router-dom@6)
