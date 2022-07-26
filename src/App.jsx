@@ -11,7 +11,7 @@ function App() {
     <>
     <MyHeader />
     <main>
-      <BrowserRouter >
+      <BrowserRouter basename="NewsSearchEngine">
         <Routes>
           <Route path="/" element={<SearcherNewsPage />} />
           <Route path="/buscador" element={<SearcherNewsPage />} />
