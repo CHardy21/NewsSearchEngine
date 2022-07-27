@@ -87,7 +87,7 @@ const NewsList = ({busqueda}) => {
     }
 
     return (
-        <section className="news-list-content" >
+        <section className="news-list-content" role="newslist">
             < News  data={data}/>
             < MyPagination page={pagina} count={cantidadPaginas} onChange={onChangePaginacion} />
         </section>
