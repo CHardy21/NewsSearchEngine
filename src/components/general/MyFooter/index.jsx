@@ -4,7 +4,7 @@ const MyFooter = () => {
     return(
         <>
         <hr />
-        <footer><p> <b>CHardy ⓔ </b> - Copyright © 2022 </p></footer>
+        <footer role="MyFooter"><p> <b>CHardy ⓔ </b> - Copyright © 2022 </p></footer>
         </>
     )
 }

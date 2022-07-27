@@ -11,8 +11,8 @@ const Searcher = (props) => {
     }
 
     const onButtonSearchClick = () =>{
-            //if(texto.length>2){ props.onSearch(texto);} 
-            props.onSearch(texto);
+            if(texto.length>2){ props.onSearch(texto);} 
+            //props.onSearch(texto);
     }
 
     const onKeyDown = (e) => {

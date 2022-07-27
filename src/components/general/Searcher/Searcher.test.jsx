@@ -6,7 +6,7 @@ const onSearchMock = jest.fn();
 
 describe("<Searcher />", () => {
 
-    it("Debe renderizarse ambos componentes", async () => {
+    it("Debe renderizarse ambos componentes (input y button)", async () => {
         // Arrange
         // Act
         render(<Searcher />)
@@ -15,7 +15,18 @@ describe("<Searcher />", () => {
         expect(screen.getByRole('button')).toBeInTheDocument()
     })
 
-    it("Debe llamar a props.onSearch (click en boton)", async () => {
+    it("Boton debe estar inactivo cuando busqueda < 3 caracteres", async () => {
+        render(<Searcher onSearch={onSearchMock}/>);
+        const searcherInput = screen.getByRole('textbox');
+        const searcherButton = screen.getByRole('button');
+
+        act(() => {
+            fireEvent.change(searcherInput, { target: { value: 'te' }});
+            expect(screen.getByRole('button')).toBeInTheDocument({ disabled: { value: false }})
+        });
+    })
+
+    it("Click en Button Debe llamar a props.onSearch", async () => {
         // Arrange
         // Act
         render(<Searcher onSearch={onSearchMock}/>);
@@ -29,18 +40,7 @@ describe("<Searcher />", () => {
         });
     })
 
-    it("Presionar Enter Debe llamar a props.onSearch ", async () => {
-
-        render(<Searcher onSearch={onSearchMock}/>);
-        const searcherInput = screen.getByRole('textbox');
-        
-        act(() => {
-            fireEvent.keyDown(searcherInput, {key: 'Enter', code: 'Enter', charCode: 13})
-            expect(onSearchMock).toHaveBeenCalled();
-        });
-    })
-
-    it("No Debe llamar a props.onSearch cuando busqueda es menor a 3 caracteres", async () => {
+    it("Click en Button NO Debe llamar a props.onSearch si busqueda < 3 caracteres", async () => {
 
         render(<Searcher onSearch={onSearchMock}/>);
         const searcherInput = screen.getByRole('textbox');
@@ -53,19 +53,32 @@ describe("<Searcher />", () => {
         });
     })
 
-    it("Boton debe estar inactivo cuando busqueda en menor a 3 caracteres", async () => {
-        // Arrange
-        // Act
+    it("Presionar Enter Debe llamar a props.onSearch si busqueda > 3 caracteres", async () => {
+
         render(<Searcher onSearch={onSearchMock}/>);
         const searcherInput = screen.getByRole('textbox');
-        const searcherButton = screen.getByRole('button');
-
+        
         act(() => {
-            fireEvent.change(searcherInput, { target: { value: 'te' }});
-            expect(screen.getByRole('button')).toBeInTheDocument({ disabled: { value: false }})
-            
+            fireEvent.change(searcherInput, { target: { value: 'test' }});
+            fireEvent.keyDown(searcherInput, {key: 'Enter', code: 'Enter', charCode: 13})
+            expect(onSearchMock).toHaveBeenCalled();
         });
     })
+
+    it("Presionar Enter NO Debe llamar a props.onSearch si busqueda < 3 caracteres", async () => {
+
+        render(<Searcher onSearch={onSearchMock}/>);
+        const searcherInput = screen.getByRole('textbox');
+        
+        act(() => {
+            fireEvent.change(searcherInput, { target: { value: 'te' }});
+            fireEvent.keyDown(searcherInput, {key: 'Enter', code: 'Enter', charCode: 13})
+            expect(onSearchMock).not.toHaveBeenCalled();
+        });
+    })
+
+
+
     
 
     

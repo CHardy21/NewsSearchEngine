@@ -10,7 +10,7 @@ function App() {
   return (
     <>
     <MyHeader />
-    <main>
+    <main role="main">
       <BrowserRouter basename="NewsSearchEngine">
         <Routes>
           <Route path="/" element={<SearcherNewsPage />} />

@@ -3,7 +3,7 @@ import "./MyHeader.css"
 
 const MyHeader = () => {
     return (
-        <header>
+        <header role="MyHeader">
             <img src={logo} className="App-logo" alt="logo" />
             <p> News Search Engine</p>
         </header>
