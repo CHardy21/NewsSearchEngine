@@ -25,29 +25,22 @@ const NewsList = ({busqueda}) => {
     const [pagina,  setPagina] = useState(1);
     const [cantidadPaginas,setCantidadPaginas] = useState(0);
     const [err, setErr] = useState();
-
+    
+    // llamada al servicio
     const getNewsFromService = async (busqueda,pagina) => {
         setLoading(true); // usado para mostrar el loading mientras espero al servicio
         const respuesta = await getNewsList(busqueda,pagina)
         
         console.log(respuesta)
         setData(respuesta);    
-
-        // ver si incluyo estas lineas
+        
+        // Servicio devuelve error
         if( respuesta.status === "error") {
             console.log("ERROR: ",respuesta.message);
             setLoading(false);
             setErr(respuesta);
-            // return (
-            //     <>
-            //     <p>Ooopsss!!! Algo ha salido mal.</p>
-            //     <p>Error: {respuesta.message}</p>
-            //     </>
-            //)
         }
-        // ----------------------------
 
-        
         const totalPaginas = Math.ceil(parseInt(respuesta.totalResults)/10);
         setCantidadPaginas(totalPaginas);
      
@@ -57,9 +50,10 @@ const NewsList = ({busqueda}) => {
     // llamada al servicio
     useEffect(()=> {
         // Verifica que haya alguna busqueda y que tenga al menos 3 caracteres
-        if(busqueda && busqueda.length>2){
+        // para llamar al servicio
+        if( busqueda && busqueda.length > 2 ){
             console.log("Se llamo al servicio")
-            getNewsFromService(busqueda,pagina);
+            getNewsFromService(busqueda, pagina);
         }
     },[busqueda,pagina])
 
@@ -67,19 +61,21 @@ const NewsList = ({busqueda}) => {
         console.log(pag);
         setPagina(pag);
     }
+
     if(err){
         return <Error data={data}/>
     }
+
     if(loading){
         return <Loading />
     }
+
     // Si no hay noticias ni busqueda activa no muestro nada
     // sirve para la primera ves que entro a la pagina
     if (!data || !data.articles) {
-        //console.log("estoy aca")
         return null;
     }
-
+    // Se muestra cuando el servicio devuelve 0 resultados segun criterios buscados
     if(!data.totalResults){
         return(
             <center><h2>No existen resultados para la busqueda</h2></center>
