@@ -174,7 +174,6 @@ describe("<NewsList />", () => {
         // Assert
         expect(screen.getByRole('progressbar')).toBeInTheDocument()
     })
-
     // Servicio devuelve x Noticias encontradas
     it('Debe aparecer una lista de noticias', async () => {
         // Arrange
@@ -205,7 +204,6 @@ describe("<NewsList />", () => {
             expect(screen.getByRole('0result')).toBeInTheDocument();
         });
     });
-
     // Servicio devuelve ERROR
     it('Debe Aparecer un mensaje de ERROR ', async () => {
         // Arrange
