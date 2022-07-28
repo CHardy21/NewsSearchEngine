@@ -1,5 +1,5 @@
 import NewsList from "./index";
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
 const NEWS_STUB_OK = {
@@ -138,39 +138,91 @@ const NEWS_STUB_OK = {
         }
     ]
 };
+const NEWS_STUB_0RESULT = {
+    "status": "ok",
+    "totalResults": 0,
+    "articles": []
+};
+const NEWS_STUB_ERR = {
+    "status": "error",
+    "code": "maximumResultsReached",
+    "message": "You have requested too many results. Developer accounts are limited to a max of 100 results. You are trying to request results 1890 to 1900. Please upgrade to a paid plan if you need more results."
+};
 
 const mockFetch = jest.fn().mockResolvedValue({
     json: jest.fn().mockResolvedValue(NEWS_STUB_OK)
 });
 
 
- describe("<NewsList />", () => {
+describe("<NewsList />", () => {
+    let originalFetch;
+    // fn se ejecuta ANTES De cada prueba
+    beforeEach(() => {
+        originalFetch = global.fetch; // conservo la fn fetch original antes del mock
+        global.fetch = mockFetch;
+    });
+    // fn se ejecuta DESPUES de cada prueba
+    afterEach(() => {
+        global.fetch = originalFetch; // restauro la fn original fetch
+    });
 
     // loading
     it("Debe mostrar Loading mientras espero respuesta del servicio", async () => {
         // Arange
-        const originalFetch = global.fetch; // conservo la fn fetch original antes del mock
-        global.fetch = mockFetch;
         // Act
-        render(<NewsList />);
+        render(<NewsList busqueda="bitcoin"/>);
         // Assert
-        //const loading = screen.getByRole('progressbar');
-        //expect(loading).toBeInTheDocument();
         expect(screen.getByRole('progressbar')).toBeInTheDocument()
-
-
-
-        global.fetch = originalFetch; // restauro la fn original fetch
     })
+
+    // Servicio devuelve x Noticias encontradas
+    it('Debe aparecer una lista de noticias', async () => {
+        // Arrange
+        const stubFetch = jest.fn().mockResolvedValue({
+            json: jest.fn().mockResolvedValue(NEWS_STUB_OK)
+        });
+        originalFetch = global.fetch;
+        global.fetch = stubFetch;
+        // Act
+        render(<NewsList busqueda='bitcoin' />);
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByRole('news-list')).toBeInTheDocument();
+        });
+    });
+    // Servicio devuelve 0 Noticia (no encontro noticias)
+    it('Debe informar q no se encontro noticias', async () => {
+        // Arrange
+        const stubFetch = jest.fn().mockResolvedValue({
+            json: jest.fn().mockResolvedValue(NEWS_STUB_0RESULT)
+        });
+        originalFetch = global.fetch;
+        global.fetch = stubFetch;
+        // Act
+        render(<NewsList busqueda='bitcoin' />);
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByRole('0result')).toBeInTheDocument();
+        });
+    });
+
+    // Servicio devuelve ERROR
+    it('Debe Aparecer un mensaje de ERROR ', async () => {
+        // Arrange
+        const stubFetch = jest.fn().mockResolvedValue({
+            json: jest.fn().mockResolvedValue(NEWS_STUB_ERR)
+        });
+        originalFetch = global.fetch;
+        global.fetch = stubFetch;
+        // Act
+        render(<NewsList busqueda='bitcoin' />);
+        // Assert
+        await waitFor(() => {
+            expect(screen.getByRole('error')).toBeInTheDocument();
+        });
+    });
+
     // no hay noticias
     // hay noticias
-
-//     it("Debe renderizarse el componete <NewsList />", async () => {
-//         // Arrange
-//         // Act
-//         render(<NewsList />)
-//         // Assert
-//         expect(screen.getByRole('newslist')).toBeInTheDocument()
-//     })
 
 });

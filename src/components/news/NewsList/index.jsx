@@ -10,7 +10,7 @@ import "./NewsList.css"
 const News = ({data}) => {
     const news = data.articles;
     return(
-        <div className="news-list">
+        <div className="news-list" role="news-list">
             <p >Estas viendo <b>{news.length}</b> noticias de <b>{data.totalResults}</b> resultados. </p>
             { news && news.map((val,index) => 
                 <NewsItem key={index} {...val}/>
@@ -31,7 +31,7 @@ const NewsList = ({busqueda}) => {
         setLoading(true); // usado para mostrar el loading mientras espero al servicio
         const respuesta = await getNewsList(busqueda,pagina)
         
-        console.log(respuesta)
+        //console.log(respuesta)
         setData(respuesta);    
         
         // Servicio devuelve error
@@ -78,12 +78,14 @@ const NewsList = ({busqueda}) => {
     // Se muestra cuando el servicio devuelve 0 resultados segun criterios buscados
     if(!data.totalResults){
         return(
-            <center><h2>No existen resultados para la busqueda</h2></center>
+            <div role="0result">
+                <center><h2>No existen resultados para la busqueda</h2></center>
+            </div>
         )
     }
 
     return (
-        <section className="news-list-content" role="newslist">
+        <section className="news-list-content" >
             < News  data={data}/>
             < MyPagination page={pagina} count={cantidadPaginas} onChange={onChangePaginacion} />
         </section>

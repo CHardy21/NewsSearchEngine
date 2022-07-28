@@ -10,7 +10,7 @@ const Error = ({data}) => {
 
   if (show) {
     return (
-      <div className='box-error'>
+      <div className='box-error' role="error">
         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
             <Alert.Heading>Ooopsss... Algo ha salido mal!!!</Alert.Heading>
             <p>Error: {data.code}</p>
