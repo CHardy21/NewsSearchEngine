@@ -77,7 +77,6 @@ describe("<Searcher />", () => {
         });
     })
 
-
     it("Presionar Enter NO Debe llamar a props.onSearch si busqueda < 3 caracteres", async () => {
 
         render(<Searcher onSearch={onSearchMock}/>);

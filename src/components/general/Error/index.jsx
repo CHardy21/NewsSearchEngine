@@ -3,15 +3,13 @@ import Alert from 'react-bootstrap/Alert';
 import "./Error.css"
 //import Button from 'react-bootstrap/Button';
 
-//function AlertDismissibleExample({data}) {
-
 const Error = ({data}) => {    
     const [show, setShow] = useState(true);
 
   if (show) {
     return (
       <div className='box-error' role="error">
-        <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert variant="danger" onClose={() => setShow(false)} dismissible role="error-alert">
             <Alert.Heading>Ooopsss... Algo ha salido mal!!!</Alert.Heading>
             <p>Error: {data.code}</p>
             <p>{data.message}</p>
@@ -20,20 +18,7 @@ const Error = ({data}) => {
     );
   }
 
-  window.location.reload(true);
-  //return <Button onClick={() => setShow(true)}>Show Alert</Button>;
+window.location.reload(true);
 }
-
-//return(<AlertDismissibleExample />);
-
-// const Error = ({data}) => {
-//     return (
-//         <>
-//         <h2>Ooopsss!!! Algo ha salido mal.</h2>
-//         <p>Error: {data.code}</p>
-//         <p>{data.message}</p>
-//         </>
-//     )
-// }
 
 export default Error;

@@ -166,6 +166,18 @@ describe("<NewsList />", () => {
         global.fetch = originalFetch; // restauro la fn original fetch
     });
 
+    // // loading
+    // it("Debe mostrar Loading mientras espero respuesta del servicio", async () => {
+    //     // Arange
+    //     // Act
+    //     await act(async () => {
+    //         render(<NewsList busqueda="bitcoin"/>);
+    //     });
+    //     // Assert
+    //     expect(screen.getByRole('progressbar')).toBeInTheDocument()
+    // })
+
+
     // loading
     it("Debe mostrar Loading mientras espero respuesta del servicio", async () => {
         // Arange
@@ -174,6 +186,7 @@ describe("<NewsList />", () => {
         // Assert
         expect(screen.getByRole('progressbar')).toBeInTheDocument()
     })
+
     // Servicio devuelve x Noticias encontradas
     it('Debe aparecer una lista de noticias', async () => {
         // Arrange
@@ -189,6 +202,7 @@ describe("<NewsList />", () => {
             expect(screen.getByRole('news-list')).toBeInTheDocument();
         });
     });
+
     // Servicio devuelve 0 Noticia (no encontro noticias)
     it('Debe informar q no se encontro noticias', async () => {
         // Arrange
@@ -205,6 +219,7 @@ describe("<NewsList />", () => {
             expect(screen.getByRole('0result')).toBeInTheDocument();
         });
     });
+
     // Servicio devuelve ERROR
     it('Debe Aparecer un mensaje de ERROR ', async () => {
         // Arrange
@@ -221,7 +236,5 @@ describe("<NewsList />", () => {
         });
     });
 
-    // no hay noticias
-    // hay noticias
-
+    // Componente paginador
 });
