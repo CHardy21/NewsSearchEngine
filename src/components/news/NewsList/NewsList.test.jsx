@@ -198,6 +198,7 @@ describe("<NewsList />", () => {
         originalFetch = global.fetch;
         global.fetch = stubFetch;
         // Act
+        
         render(<NewsList busqueda='bitcoin' />);
         // Assert
         await waitFor(() => {

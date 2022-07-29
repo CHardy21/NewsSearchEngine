@@ -11,7 +11,7 @@ function App() {
     <>
     <MyHeader />
     <main role="main">
-      <BrowserRouter basename="NewsSearchEngine">
+      <BrowserRouter >
         <Routes>
           <Route path="/" element={<SearcherNewsPage />} />
           <Route path="/buscador" element={<SearcherNewsPage />} />
@@ -22,6 +22,21 @@ function App() {
     <MyFooter />
     </>
   );
+  // return (
+  //   <>
+  //   <MyHeader />
+  //   <main role="main">
+  //     <BrowserRouter basename="NewsSearchEngine">
+  //       <Routes>
+  //         <Route path="/" element={<SearcherNewsPage />} />
+  //         <Route path="/buscador" element={<SearcherNewsPage />} />
+  //         <Route path="*" element={<Error404 />} />
+  //       </Routes>
+  //     </BrowserRouter>
+  //   </main>
+  //   <MyFooter />
+  //   </>
+  // );
 }
 
 export default App;

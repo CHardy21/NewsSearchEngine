@@ -10,10 +10,10 @@ const SearcherNewsPage = () => {
     }
 
     return (
-        <>
+        <div role="searcher-news-page">
             <Searcher onSearch={onSearch}/>
             <NewsList busqueda={busqueda}/>
-        </>
+        </div>
     )
 }
 

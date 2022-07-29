@@ -36,7 +36,7 @@ const NewsList = ({busqueda}) => {
         
         // Servicio devuelve error
         if( respuesta.status === "error") {
-            console.log("ERROR: ",respuesta.message);
+            //console.log("ERROR: ",respuesta.message);
             setLoading(false);
             setErr(respuesta);
         }
@@ -52,7 +52,7 @@ const NewsList = ({busqueda}) => {
         // Verifica que haya alguna busqueda y que tenga al menos 3 caracteres
         // para llamar al servicio
         if( busqueda && busqueda.length > 2 ){
-            console.log("Se llamo al servicio")
+            //console.log("Se llamo al servicio")
             getNewsFromService(busqueda, pagina);
         }
     },[busqueda,pagina])

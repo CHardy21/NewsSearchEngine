@@ -65,6 +65,19 @@ describe("<Searcher />", () => {
         });
     })
 
+    it("Presionar otra tecla q no sea enter NO Debe llamar a props.onSearch si busqueda > 3 caracteres", async () => {
+
+        render(<Searcher onSearch={onSearchMock}/>);
+        const searcherInput = screen.getByRole('textbox');
+        
+        act(() => {
+            fireEvent.change(searcherInput, { target: { value: 'test' }});
+            fireEvent.keyDown(searcherInput, {charCode: 10})
+            expect(onSearchMock).not.toHaveBeenCalled();
+        });
+    })
+
+
     it("Presionar Enter NO Debe llamar a props.onSearch si busqueda < 3 caracteres", async () => {
 
         render(<Searcher onSearch={onSearchMock}/>);
@@ -76,11 +89,4 @@ describe("<Searcher />", () => {
             expect(onSearchMock).not.toHaveBeenCalled();
         });
     })
-
-
-
-    
-
-    
-
 })
