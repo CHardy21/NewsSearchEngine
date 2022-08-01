@@ -12,7 +12,7 @@ const NewsItem = ({ title, description, publishedAt, urlToImage,source,url }) =>
     }
 
     return (
-        <article className="nl-box" onClick={handleClickOpenSource}> 
+        <article className="nl-box" onClick={handleClickOpenSource} role="article"> 
             <div className="nl-box-content">
                 <h1>{title}</h1>
                 <p>{description}</p>
