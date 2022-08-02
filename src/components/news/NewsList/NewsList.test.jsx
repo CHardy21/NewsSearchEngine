@@ -1,4 +1,5 @@
 import NewsList from "./index";
+import MyPagination from "../../general/MyPagination";
 import { render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
@@ -188,7 +189,7 @@ describe("<NewsList />", () => {
     // })
 
     // Servicio devuelve x Noticias encontradas
-    it('Debe aparecer una lista de noticias', async () => {
+    it('Debe aparecer una lista de noticias y su paginacion', async () => {
         // Arrange
         const stubFetch = jest.fn().mockResolvedValue({
             json: jest.fn().mockResolvedValue(NEWS_STUB_OK)
@@ -200,6 +201,7 @@ describe("<NewsList />", () => {
         // Assert
         await waitFor(() => {
             expect(screen.getByRole('news-list')).toBeInTheDocument();
+            expect(screen.getByLabelText('pagination navigation')).toBeInTheDocument();
         });
     });
 

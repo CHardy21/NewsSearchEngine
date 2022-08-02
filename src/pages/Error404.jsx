@@ -1,9 +1,10 @@
 //import notfound404 from '../404.png';
-
+// <img src={notfound404} alt="" ></img>
 const Error404 = ()=> {
     return(
-       // <img src={notfound404} alt="" ></img>
-       <p>Pagina no encontrada</p>
+        <div role="error-404">
+            <center><p>Pagina no encontrada</p></center>
+        </div>
     )
 }
 

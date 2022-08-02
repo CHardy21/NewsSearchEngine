@@ -9,21 +9,8 @@ export const getNewsList = async (criterioBusqueda='', pagina = 1 ) => {
         return respuesta.json();
 
     } catch (error) {
+        console.log("ERR: ",error);
         return (<p>error</p>);
 
     }
 }
-
-//ver esta funcion luego
-
-// export const getNewDetail = async (idMovie=0 ) => {
-//     try {
-//         // https://www.omdbapi.com/?s=spiderman&apikey=f1bc660c
-//         const respuesta = await fetch (
-//             `${NEWS_API_HOST}?i=${idMovie}&apikey=${API_KEY}`
-//         );
-//         return respuesta.json();
-//     } catch (error) {
-//         return { isError: true};
-//     }
-//}

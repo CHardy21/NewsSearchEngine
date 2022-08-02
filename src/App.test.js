@@ -9,7 +9,7 @@ import App from './App';
 //   const linkElement = screen.getByText(/learn react/i);
 //   expect(linkElement).toBeInTheDocument();
 // });
-describe("<Searcher />", () => {
+describe("<App />", () => {
 
 it("Debe renderizarse los componentes (App, MyHeader y MyFooter)", async () => {
   // Arrange
@@ -22,32 +22,4 @@ it("Debe renderizarse los componentes (App, MyHeader y MyFooter)", async () => {
   expect(screen.getByRole('MyFooter')).toBeInTheDocument()
 })
 
-// app.test.js
-it("clicking filter links updates product query params", () => {
-  let testHistory, testLocation;
-  render(
-    <MemoryRouter initialEntries={["/my/initial/route"]}>
-      <App />
-      <Route
-        path="*"
-        render={({ history, location }) => {
-          testHistory = history;
-          testLocation = location;
-          return null;
-        }}
-      />
-    </MemoryRouter>,
-    node
-  );
-
-  act(() => {
-    // example: click a <Link> to /products?id=1234
-  });
-
-  // assert about url
-  expect(testLocation.pathname).toBe("/products");
-  const searchParams = new URLSearchParams(testLocation.search);
-  expect(searchParams.has("id")).toBe(true);
-  expect(searchParams.get("id")).toEqual("1234");
-});
 });
