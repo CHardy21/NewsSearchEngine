@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import "./Error.css"
-//import Button from 'react-bootstrap/Button';
 
 const Error = ({data}) => {    
     const [show, setShow] = useState(true);

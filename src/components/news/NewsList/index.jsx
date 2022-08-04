@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-//import { Link } from "react-router-dom"
 import { getNewsList } from "../../../services/getNewsList"
 import Error from "../../general/Error"
 import Loading from "../../general/Loading/Loading"
@@ -58,7 +57,7 @@ const NewsList = ({busqueda}) => {
     },[busqueda,pagina])
 
     const onChangePaginacion = (_evento,pag) => {
-        console.log(pag);
+        //console.log(pag);
         setPagina(pag);
     }
 
@@ -79,7 +78,7 @@ const NewsList = ({busqueda}) => {
     if(!data.totalResults){
         return(
             <div role="0result">
-                <center><h2>No existen resultados para la busqueda</h2></center>
+                <center><h5>No existen resultados para esta la busqueda.</h5></center>
             </div>
         )
     }

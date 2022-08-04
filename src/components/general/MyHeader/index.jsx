@@ -4,8 +4,10 @@ import "./MyHeader.css"
 const MyHeader = () => {
     return (
         <header role="MyHeader">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p> News Search Engine</p>
+            <a href="/">
+            <img src={logo} className="App-logo" alt="logo" /></a>
+            <p> Buscador de Noticias</p>
+            
         </header>
     )
 }

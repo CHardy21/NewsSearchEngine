@@ -6,6 +6,11 @@ export const getNewsList = async (criterioBusqueda='', pagina = 1 ) => {
         const respuesta = await fetch (
             `${NEWS_API_HOST}?q=${criterioBusqueda}&apikey=${API_KEY}&page=${pagina}&pageSize=10&language=es`
         );
+
+        if(respuesta.status==="error"){
+            console.log("ERROR: ",respuesta.message)
+        }
+
         return respuesta.json();
 
     } catch (error) {
@@ -13,4 +18,7 @@ export const getNewsList = async (criterioBusqueda='', pagina = 1 ) => {
         return (<p>error</p>);
 
     }
+
+
+
 }

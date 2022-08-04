@@ -6,7 +6,7 @@ const SearcherNewsPage = () => {
     const [busqueda, setBusqueda] = useState('');
     const onSearch = (criterio) =>{
         setBusqueda(criterio);
-        console.log("buscando -> "+criterio)
+        //console.log("buscando -> "+criterio)
     }
 
     return (

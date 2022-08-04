@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { Button } from 'react-bootstrap';
 import  'bootstrap/dist/css/bootstrap.min.css' ;
 import "./Searcher.css"
 
@@ -7,12 +6,11 @@ const Searcher = (props) => {
     const [texto, setTexto] = useState('');
     const onTextoChange = (evento) => {
         //console.log(evento);
-            setTexto(evento.target.value)
+        setTexto(evento.target.value)
     }
 
     const onButtonSearchClick = () =>{
             if(texto.length>2){ props.onSearch(texto);} 
-            //props.onSearch(texto);
     }
 
     const onKeyDown = (e) => {
