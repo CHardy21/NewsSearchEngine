@@ -4,8 +4,11 @@ const Error404 = ()=> {
     return(
         <div role="error-404">
             <center>
-                <img src={notfound404} alt="" width="400px" />
-                <div className="card text-bg-primary mb-1 box-error" >
+                <div className="card mb-1 box-error" >
+                    <div class="card-body">
+                    <img src={notfound404} alt="" className="img-fluid" />
+                    <hr />
+                    </div>
                     <div className="card-body">
                         <p className="card-text">
                             La Página que busca no existe o ha sido borrada.

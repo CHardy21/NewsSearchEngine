@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 
-const NewsItem = ({ title, description, publishedAt, urlToImage,source,url }) => {
+const NewsItem = ({ title, description, publishedAt, urlToImage,source,url,image }) => {
     
     const myDateTime = DateTime.fromISO(publishedAt)
     const fechaPublicacion = myDateTime.toFormat("dd-MM-yyyy")
@@ -20,7 +20,7 @@ const NewsItem = ({ title, description, publishedAt, urlToImage,source,url }) =>
                 <span>Fuente: <button className="source">{source.name}</button></span>
             </div>
             <div className="nl-box-image">
-                <img src={urlToImage} alt="" className="img-fluid"/>
+                <img src={urlToImage || image} alt="" className="img-fluid"/>
             </div>
         </article>
     )

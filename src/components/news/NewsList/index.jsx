@@ -10,7 +10,7 @@ const News = ({data}) => {
     const news = data.articles;
     return(
         <div className="news-list" role="news-list">
-            <p >Estas viendo <b>{news.length}</b> noticias de <b>{data.totalResults}</b> resultados. </p>
+            <p >Estas viendo <b>{news.length}</b> noticias de <b>{data.totalResults || data.totalArticles}</b> resultados. </p>
             { news && news.map((val,index) => 
                 <NewsItem key={index} {...val}/>
             )}
@@ -30,17 +30,23 @@ const NewsList = ({busqueda}) => {
         setLoading(true); // usado para mostrar el loading mientras espero al servicio
         const respuesta = await getNewsList(busqueda,pagina)
         
-        //console.log(respuesta)
+        console.log(respuesta)
         setData(respuesta);    
         
         // Servicio devuelve error
-        if( respuesta.status === "error") {
+        if( respuesta.status === "error" || respuesta.error ) {
             //console.log("ERROR: ",respuesta.message);
             setLoading(false);
             setErr(respuesta);
         }
-
-        const totalPaginas = Math.ceil(parseInt(respuesta.totalResults)/10);
+        
+        
+        // if(respuesta.totalResult){
+        //     cantResultados = respuesta.totalResults;
+        // } else {
+        //     cantResultados = respuesta.totalArticles;
+        // }
+        const totalPaginas = Math.ceil(parseInt(respuesta.totalResults || respuesta.totalArticles)/10);
         setCantidadPaginas(totalPaginas);
      
         setLoading(false);
@@ -51,6 +57,9 @@ const NewsList = ({busqueda}) => {
         // Verifica que haya alguna busqueda y que tenga al menos 3 caracteres
         // para llamar al servicio
         if( busqueda && busqueda.length > 2 ){
+
+            //let referrer = React.createRef();
+            console.log("referrer url:",document.referrer);
             //console.log("Se llamo al servicio")
             getNewsFromService(busqueda, pagina);
         }
@@ -75,7 +84,7 @@ const NewsList = ({busqueda}) => {
         return null;
     }
     // Se muestra cuando el servicio devuelve 0 resultados segun criterios buscados
-    if(!data.totalResults){
+    if(!data.totalResults && !data.totalArticles){
         return(
             <div role="0result">
                 <center><h5>No existen resultados para esta la busqueda.</h5></center>
