@@ -1,7 +1,9 @@
 import notfound404 from '../ups-error-404.png';
+import { Link } from 'react-router-dom';
 
 const Error404 = ()=> {
     return(
+        <BrowserRouter basename='/NewsSearchEngine'>
         <div role="error-404">
             <center>
                 <div className="card mb-1 box-error" >
@@ -12,13 +14,13 @@ const Error404 = ()=> {
                     <div className="card-body">
                         <p className="card-text">
                             La Página que busca no existe o ha sido borrada.
-                             Ir al <a href="/"><b>Inicio</b></a>.</p>
+                             Ir al <Link to="/home" ><b>Inicio</b></Link>.</p>
                              
                     </div>
                 </div>
             </center>
         </div>
-
+        </BrowserRouter>
 
 
     )

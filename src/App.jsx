@@ -10,7 +10,7 @@ function App() {
     <>
     <MyHeader />
     <main role="main">
-       <BrowserRouter >  {/* agregar basename={'/NewsSearchEngine'}  para subir en github-pages */}
+       <BrowserRouter basename='/NewsSearchEngine'>  {/* agregar basename={'/NewsSearchEngine'}  para subir en github-pages */}
         <Routes >
           <Route path="/" element={<SearcherNewsPage />} />
           <Route path="/buscador" element={<SearcherNewsPage />} />
