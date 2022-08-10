@@ -1,13 +1,13 @@
 import notfound404 from '../ups-error-404.png';
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter } from 'react-router-dom';
 
 const Error404 = ()=> {
     return(
-        <BrowserRouter basename='/NewsSearchEngine'>
+        
         <div role="error-404">
             <center>
                 <div className="card mb-1 box-error" >
-                    <div class="card-body">
+                    <div className="card-body">
                     <img src={notfound404} alt="" className="img-fluid" />
                     <hr />
                     </div>
@@ -20,7 +20,7 @@ const Error404 = ()=> {
                 </div>
             </center>
         </div>
-        </BrowserRouter>
+        
 
 
     )
