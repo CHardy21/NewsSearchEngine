@@ -14,7 +14,7 @@ const NewsItem = ({ title, description, publishedAt, urlToImage,source,url,image
     return (
         <article className="nl-box" onClick={handleClickOpenSource} role="article"> 
             <div className="nl-box-image">
-                <img src={urlToImage || image} alt="" className="img-fluid"/>
+                <img src={urlToImage || image} alt="" />
             </div>
             <div className="nl-box-content">
                 <h1>{title}</h1>
