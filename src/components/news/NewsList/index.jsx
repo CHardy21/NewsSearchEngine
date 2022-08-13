@@ -40,12 +40,7 @@ const NewsList = ({busqueda}) => {
             setErr(respuesta);
         }
         
-        
-        // if(respuesta.totalResult){
-        //     cantResultados = respuesta.totalResults;
-        // } else {
-        //     cantResultados = respuesta.totalArticles;
-        // }
+
         const totalPaginas = Math.ceil(parseInt(respuesta.totalResults || respuesta.totalArticles)/10);
         setCantidadPaginas(totalPaginas);
      
@@ -58,9 +53,7 @@ const NewsList = ({busqueda}) => {
         // para llamar al servicio
         if( busqueda && busqueda.length > 2 ){
 
-            //let referrer = React.createRef();
-            console.log("referrer url:",document.referrer);
-            //console.log("Se llamo al servicio")
+           //console.log("Se llamo al servicio")
             getNewsFromService(busqueda, pagina);
         }
     },[busqueda,pagina])
